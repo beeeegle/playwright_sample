@@ -4,10 +4,12 @@ import { Signup } from '../page/signup'
 export class Top {
   readonly page: Page
   readonly registBtn: Locator
+  readonly heading: Locator
 
   constructor(page: Page) {
     this.page = page
     this.registBtn = page.locator('text=会員登録').first()
+    this.heading = page.locator("//h2[@class='my-4']")
   }
 
   /**
@@ -15,7 +17,7 @@ export class Top {
    * @return {void}
    */
   async open() {
-    await this.page.goto('https://hotel.testplanisphere.dev/ja/index.html');
+    await this.page.goto('https://hotel.testplanisphere.dev/ja/index.html')
   }
 
   /**

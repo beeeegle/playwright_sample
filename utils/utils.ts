@@ -29,8 +29,12 @@ export class Utils {
    * @return {void}
    */
   public jsonDelete(): void {
-    if (fs.existsSync(STORAGE)) {
-      fs.unlinkSync(STORAGE)
+    try {
+      if (fs.existsSync(STORAGE)) {
+        fs.unlinkSync(STORAGE)
+      }
+    } catch(e) {
+        console.log('file delete fail')
     }
   }
 }

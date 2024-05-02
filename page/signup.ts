@@ -1,6 +1,6 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { Mypage } from '../page/mypage'
-import { Utils, STORAGE } from '../utils/utils';
+import { STORAGE } from '../utils/utils';
 
 const cookies = [
   {
@@ -13,14 +13,17 @@ const cookies = [
 
 export class Signup {
   readonly page: Page
+  readonly heading: Locator
   readonly email: Locator
   readonly pw: Locator
   readonly pwConfirm: Locator
   readonly userName: Locator
   readonly registBtn: Locator
+  
 
   constructor(page: Page) {
     this.page = page
+    this.heading = page.locator("//h2[@class='my-3']")
     this.email = page.locator('#email')
     this.pw = page.locator('#password')
     this.pwConfirm = page.locator('#password-confirmation')
@@ -47,7 +50,7 @@ export class Signup {
   public async registBtnClick(): Promise<Mypage> {
     await this.registBtn.click()
     await this.page.context().addCookies(cookies);
-    await this.page.context().storageState({ path: STORAGE });
+    await this.page.context().storageState({ path: STORAGE })
     return new Mypage(this.page)
   }
 }
