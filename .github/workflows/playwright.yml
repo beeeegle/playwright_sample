@@ -46,7 +46,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Deploy to GitHubPages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
